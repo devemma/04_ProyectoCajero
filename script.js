@@ -17,29 +17,27 @@ let cuentas = [
 ]
 
 function sesion(){
-    let usuario = document.getElementById("user").value
+    let nombre = document.getElementById("user").value
     let contra = document.getElementById("password").value
 
-    if(usuario == "" || contra == ""){
+    if(nombre == "" || contra == ""){
         alert("Por favor ingresa los datos.")
-    } else {
-        alert("Hay algo")
+    } else if(nombre != null && nombre != null){
+        // buscar el id del usuario con el nombre
+        let user = cuentas.find(usuario => getUsuario(usuario, nombre));
+        if(contra == user.pass){
+            console.log("Contraseña correcta")
+        } else {
+            console.log("Contraseña incorrecta")
+        }
     }
 }
 
-function inicio(id) {
-    // Encontrar el id del usuario con el username
-    if(cuentas[id].pass == prompt("¿Cuál es la contraseña?")){
-        // comparar si tiene la misma contraseña en la locacion
-        console.log("Nombre: " + cuentas[id].nombre)
-        console.log("Saldo actual: " + cuentas[id].saldo)
-        // Redireccionar a la página principal
-    } else{
-        console.log("Contraseña incorrecta")
-    }    
+function getUsuario(usuario, nombre){
+    return usuario.nombre === nombre
 }
 
 function show(){
     var comp = document.getElementById("formulario")
-    comp.style.display = "block"
+    comp.style.display = "none"
 }
